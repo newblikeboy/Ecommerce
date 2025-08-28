@@ -1,143 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Celebration Store — Theme E-commerce</title>
-<link rel="stylesheet" href="stl.css">
-<script src="scrpit.js" defer></script> 
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Celebration Store — Themed Party Shopping</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-<body class="unicorn">
+<body class="all">
   <!-- NAV -->
-  <nav class="nav">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <div class="brand">🎉 <span>Celebration Store</span></div>
+      <!-- Brand / Logo -->
+      <div class="brand">
+        <i class="fa-solid fa-gift" aria-hidden="true"></i>
+        <span>BuyYourGifts</span>
+      </div>
+
+      <!-- Hamburger Toggle -->
+      <button class="hamburger" id="hamburgerToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+
+      <!-- Actions -->
       <div class="actions">
-        <button class="btn btn-outline" id="btnLogin">Login</button>
-        <button class="btn btn-solid" id="btnSignup">Signup</button>
-        <div class="cart" id="openCart">🛒<span class="count" id="cartCount">0</span></div>
+        <!-- Search -->
+        <div class="search-box">
+          <label for="search-input" class="visually-hidden">Search gifts</label>
+          <input type="text" id="search-input" placeholder="Search gifts, items..." aria-label="Search gifts and items" />
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        </div>
+
+        <!-- Auth -->
+        <button class="btn add" id="btnLogin" aria-label="Open login modal">Login</button>
+        <button class="btn add" id="btnSignup" aria-label="Open signup modal">Signup</button>
+
+        <!-- Cart -->
+        <button class="cart" id="openCart" aria-label="Open cart">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="count" id="cartCount">0</span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- THEME BUTTONS -->
+  <!-- THEME DROPDOWN -->
   <div class="theme-bar">
     <div class="theme-wrap">
-      <button class="theme-btn t-all" data-theme="all">All</button>
-      <button class="theme-btn t-unicorn" data-theme="unicorn">🦄 Unicorn</button>
-      <button class="theme-btn t-barbie" data-theme="barbie">🎀 Barbie</button>
-      <button class="theme-btn t-superhero" data-theme="superhero">🦸 Superhero</button>
-      <button class="theme-btn t-frozen" data-theme="frozen">❄️ Frozen</button>
-      <button class="theme-btn t-jungle" data-theme="jungle">🌿 Jungle</button>
-      <button class="theme-btn t-space" data-theme="space">🚀 Space</button>
+      <label for="themeSelect" class="visually-hidden">Select a theme</label>
+      <select id="themeSelect" aria-label="Select a theme">
+        <option value="all"><i class="fa-solid fa-palette"></i> All Themes</option>
+        <option value="unicorn"><i class="fa-solid fa-unicorn"></i> Unicorn</option>
+        <option value="barbie"><i class="fa-solid fa-crown"></i> Barbie</option>
+        <option value="superhero"><i class="fa-solid fa-mask"></i> Superhero</option>
+        <option value="frozen"><i class="fa-solid fa-snowflake"></i> Frozen</option>
+        <option value="jungle"><i class="fa-solid fa-leaf"></i> Jungle</option>
+        <option value="space"><i class="fa-solid fa-rocket"></i> Space</option>
+      </select>
     </div>
   </div>
 
   <!-- HERO -->
-  <header class="hero" id="hero" style="background-image:url('https://images.unsplash.com/photo-1566261307871-76410ed4c0d8?q=80&w=1600&auto=format&fit=crop');">
+  <header class="hero" id="hero" style="background-image: url('https://images.unsplash.com/photo-1566261307871-76410ed4c0d8?q=80&w=1600&auto=format&fit=crop');" role="banner">
     <div class="hero-inner">
       <h1 id="heroTitle">Feel the Theme. Shop the Party.</h1>
-      <p id="heroTag">Pick a theme to transform the whole store & products.</p>
+      <p id="heroTag">Pick a theme to transform the store & products.</p>
     </div>
   </header>
 
-  <!-- CATEGORIES (chips) -->
-  <section class="section" aria-label="Quick Categories">
-    <h2>🛍️ Popular Categories</h2>
-    <div class="chips">
-      <div class="chip">Theme Cakes</div>
-      <div class="chip">Balloons</div>
-      <div class="chip">Backdrop</div>
-      <div class="chip">Caps & Masks</div>
-      <div class="chip">Props</div>
-      <div class="chip">Return Gifts</div>
-      <div class="chip">Lighting</div>
-      <div class="chip">Banners</div>
-    </div>
-  </section>
-
   <!-- PRODUCTS -->
-  <section class="section" aria-label="Products">
-    <h2 id="prodHeading">🎯 Featured Products</h2>
+  <section class="section" aria-label="Featured Products">
+    <h2 id="prodHeading"><i class="fa-solid fa-star"></i> Featured Products</h2>
     <div class="grid" id="productGrid"></div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="section" aria-label="Reviews">
-    <h2>⭐ Loved by Party Parents</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+  <section class="section" aria-label="Customer Reviews">
+    <h2><i class="fa-solid fa-heart"></i> Loved by Party Parents</h2>
+    <div class="grid">
       <div class="card">
         <div class="info">
           <div class="title">“Unicorn theme was magical!”</div>
           <p>My daughter’s eyes lit up. Great quality & quick delivery.</p>
-          <div class="meta"><span>— Neha S.</span><span>★★★★★</span></div>
+          <div class="meta"><span>— Neha S.</span><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
         </div>
       </div>
       <div class="card">
         <div class="info">
-          <div class="title">“Superhero party = hero dad 😄”</div>
+          <div class="title">“Superhero party = hero dad”</div>
           <p>Backdrop and balloons were premium. Kids loved it!</p>
-          <div class="meta"><span>— Rohan M.</span><span>★★★★★</span></div>
+          <div class="meta"><span>— Rohan M.</span><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
         </div>
       </div>
       <div class="card">
         <div class="info">
           <div class="title">“Seamless experience”</div>
           <p>Theme switching + curated items made planning so easy.</p>
-          <div class="meta"><span>— Priya S.</span><span>★★★★★</span></div>
+          <div class="meta"><span>— Priya S.</span><span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    © 2025 Celebration Store • Demo frontend ready for backend integration • <a class="inline" href="#">Privacy</a> • <a class="inline" href="#">Terms</a>
+  <footer class="footer" role="contentinfo" aria-label="Site Footer">
+    <div class="footer-container container">
+      <section class="footer-about" aria-label="About Celebration Store">
+        <h2 class="footer-title">Celebration Store</h2>
+        <p>Your one-stop shop for themed party essentials and gifts. Quality products, curated collections, and seamless shopping experience.</p>
+        <p>© 2025 Celebration Store. All rights reserved.</p>
+      </section>
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <h3 class="footer-subtitle">Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#collections">Collections</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Help & Support</a></li>
+        </ul>
+      </nav>
+      <section class="footer-contact" aria-label="Contact Information">
+        <h3 class="footer-subtitle">Contact Us</h3>
+        <address>
+          <p>123 Party Lane, Celebration City, CA 90000</p>
+          <p>Email: <a href="mailto:support@celebrationstore.com">support@celebrationstore.com</a></p>
+          <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+        </address>
+        <div class="footer-social" aria-label="Social Media Links">
+          <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Pinterest" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+      </section>
+      <section class="footer-newsletter" aria-label="Newsletter Signup">
+        <h3 class="footer-subtitle">Subscribe to our Newsletter</h3>
+        <form action="#" method="post" class="newsletter-form" novalidate>
+          <label for="newsletter-email" class="visually-hidden">Email address</label>
+          <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" required aria-required="true" />
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Subscribe</button>
+        </form>
+      </section>
+    </div>
   </footer>
 
   <!-- CART DRAWER -->
-  <div class="drawer" id="drawer">
-    <div class="overlay" id="closeCart"></div>
+  <div class="drawer" id="drawer" role="dialog" aria-label="Cart">
+    <div class="overlay" id="closeCart" aria-label="Close cart"></div>
     <aside class="panel">
       <header>
         <strong>Your Cart</strong>
-        <button class="btn btn-outline" id="xCart" style="border-color:#fff;">Close</button>
+        <button class="btn add" id="xCart" aria-label="Close cart">Close</button>
       </header>
       <div class="items" id="cartItems"></div>
       <footer>
         <div class="total"><span>Total</span><span>₹ <span id="cartTotal">0</span></span></div>
-        <button class="checkout" id="checkoutBtn">Proceed to Checkout</button>
+        <button class="checkout" id="checkoutBtn" aria-label="Proceed to checkout"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</button>
       </footer>
     </aside>
   </div>
 
   <!-- LOGIN / SIGNUP MODALS -->
-  <div class="modal" id="loginModal">
+  <div class="modal" id="loginModal" role="dialog" aria-label="Login">
     <div class="sheet">
       <h3>Login</h3>
-      <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
-      <div class="field"><label>Password</label><input type="password" placeholder="••••••••" /></div>
+      <div class="field"><label for="login-email">Email</label><input id="login-email" type="email" placeholder="you@example.com" aria-required="true" /></div>
+      <div class="field"><label for="login-password">Password</label><input id="login-password" type="password" placeholder="••••••••" aria-required="true" /></div>
       <div class="rowbtn">
-        <button class="primary" id="loginSubmit">Login</button>
-        <button class="ghost" data-close="#loginModal">Cancel</button>
+        <button class="primary" id="loginSubmit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        <button class="ghost" data-close="#loginModal" aria-label="Cancel login">Cancel</button>
       </div>
     </div>
   </div>
 
-  <div class="modal" id="signupModal">
+  <div class="modal" id="signupModal" role="dialog" aria-label="Sign Up">
     <div class="sheet">
       <h3>Create Account</h3>
-      <div class="field"><label>Name</label><input type="text" placeholder="Full name" /></div>
-      <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
-      <div class="field"><label>Password</label><input type="password" placeholder="Create a password" /></div>
+      <div class="field"><label for="signup-name">Name</label><input id="signup-name" type="text" placeholder="Full name" aria-required="true" /></div>
+      <div class="field"><label for="signup-email">Email</label><input id="signup-email" type="email" placeholder="you@example.com" aria-required="true" /></div>
+      <div class="field"><label for="signup-password">Password</label><input id="signup-password" type="password" placeholder="Create a password" aria-required="true" /></div>
       <div class="rowbtn">
-        <button class="primary" id="signupSubmit">Sign up</button>
-        <button class="ghost" data-close="#signupModal">Cancel</button>
+        <button class="primary" id="signupSubmit"><i class="fa-solid fa-user-plus"></i> Sign up</button>
+        <button class="ghost" data-close="#signupModal" aria-label="Cancel signup">Cancel</button>
       </div>
     </div>
   </div>
-
-
 </body>
 </html>
