@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fdfdfd; }
+header { display:flex; justify-content:space-between; align-items:center; padding:1rem; background:#ffccff; }
+.themes button { margin:0 0.5rem; padding:0.5rem 1rem; border:none; cursor:pointer; border-radius:5px; }
+.products { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; padding:1rem; }
+.product-card { border:1px solid #ccc; border-radius:10px; padding:1rem; background:#fff; text-align:center; transition:transform 0.2s; }
+.product-card:hover { transform:scale(1.05); }
+.product-card img { max-width:100%; border-radius:10px; }
+.product-detail { padding:2rem; text-align:center; }
+.product-detail img { max-width:400px; width:100%; border-radius:10px; }
