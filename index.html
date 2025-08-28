@@ -1,42 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celebration Store</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Celebration Store — Theme E-commerce</title>
+<link rel="stylesheet" href="styles.css">
+<script src="scrpit.js" defer></script> 
+
 </head>
-<body>
-  <header>
-    <h1>🎉 Celebration Store</h1>
-    <div class="auth-buttons">
-      <button class="login-btn">Login</button>
-      <button class="signup-btn">Signup</button>
-      <button class="cart-btn">🛒 Cart</button>
+<body class="unicorn">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">🎉 <span>Celebration Store</span></div>
+      <div class="actions">
+        <button class="btn btn-outline" id="btnLogin">Login</button>
+        <button class="btn btn-solid" id="btnSignup">Signup</button>
+        <div class="cart" id="openCart">🛒<span class="count" id="cartCount">0</span></div>
+      </div>
     </div>
-    <nav class="themes">
-      <button data-theme="unicorn">🦄 Unicorn</button>
-      <button data-theme="barbie">👸 Barbie</button>
-      <button data-theme="superhero">🦸 Superhero</button>
-      <button data-theme="elegant">🎩 Elegant</button>
-    </nav>
+  </nav>
+
+  <!-- THEME BUTTONS -->
+  <div class="theme-bar">
+    <div class="theme-wrap">
+      <button class="theme-btn t-all" data-theme="all">All</button>
+      <button class="theme-btn t-unicorn" data-theme="unicorn">🦄 Unicorn</button>
+      <button class="theme-btn t-barbie" data-theme="barbie">🎀 Barbie</button>
+      <button class="theme-btn t-superhero" data-theme="superhero">🦸 Superhero</button>
+      <button class="theme-btn t-frozen" data-theme="frozen">❄️ Frozen</button>
+      <button class="theme-btn t-jungle" data-theme="jungle">🌿 Jungle</button>
+      <button class="theme-btn t-space" data-theme="space">🚀 Space</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="hero" style="background-image:url('https://images.unsplash.com/photo-1566261307871-76410ed4c0d8?q=80&w=1600&auto=format&fit=crop');">
+    <div class="hero-inner">
+      <h1 id="heroTitle">Feel the Theme. Shop the Party.</h1>
+      <p id="heroTag">Pick a theme to transform the whole store & products.</p>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <h2>Choose Your Celebration Theme</h2>
-      <p>Bring your party to life with magical themes and matching products!</p>
-    </section>
+  <!-- CATEGORIES (chips) -->
+  <section class="section" aria-label="Quick Categories">
+    <h2>🛍️ Popular Categories</h2>
+    <div class="chips">
+      <div class="chip">Theme Cakes</div>
+      <div class="chip">Balloons</div>
+      <div class="chip">Backdrop</div>
+      <div class="chip">Caps & Masks</div>
+      <div class="chip">Props</div>
+      <div class="chip">Return Gifts</div>
+      <div class="chip">Lighting</div>
+      <div class="chip">Banners</div>
+    </div>
+  </section>
 
-    <section class="products" id="product-list">
-      <!-- Products rendered dynamically -->
-    </section>
-  </main>
+  <!-- PRODUCTS -->
+  <section class="section" aria-label="Products">
+    <h2 id="prodHeading">🎯 Featured Products</h2>
+    <div class="grid" id="productGrid"></div>
+  </section>
 
-  <footer>
-    <p>© 2025 Celebration Store. All rights reserved.</p>
+  <!-- TESTIMONIALS -->
+  <section class="section" aria-label="Reviews">
+    <h2>⭐ Loved by Party Parents</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="card">
+        <div class="info">
+          <div class="title">“Unicorn theme was magical!”</div>
+          <p>My daughter’s eyes lit up. Great quality & quick delivery.</p>
+          <div class="meta"><span>— Neha S.</span><span>★★★★★</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="info">
+          <div class="title">“Superhero party = hero dad 😄”</div>
+          <p>Backdrop and balloons were premium. Kids loved it!</p>
+          <div class="meta"><span>— Rohan M.</span><span>★★★★★</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="info">
+          <div class="title">“Seamless experience”</div>
+          <p>Theme switching + curated items made planning so easy.</p>
+          <div class="meta"><span>— Priya S.</span><span>★★★★★</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © 2025 Celebration Store • Demo frontend ready for backend integration • <a class="inline" href="#">Privacy</a> • <a class="inline" href="#">Terms</a>
   </footer>
 
-  <script src="assets/js/app.js"></script>
+  <!-- CART DRAWER -->
+  <div class="drawer" id="drawer">
+    <div class="overlay" id="closeCart"></div>
+    <aside class="panel">
+      <header>
+        <strong>Your Cart</strong>
+        <button class="btn btn-outline" id="xCart" style="border-color:#fff;">Close</button>
+      </header>
+      <div class="items" id="cartItems"></div>
+      <footer>
+        <div class="total"><span>Total</span><span>₹ <span id="cartTotal">0</span></span></div>
+        <button class="checkout" id="checkoutBtn">Proceed to Checkout</button>
+      </footer>
+    </aside>
+  </div>
+
+  <!-- LOGIN / SIGNUP MODALS -->
+  <div class="modal" id="loginModal">
+    <div class="sheet">
+      <h3>Login</h3>
+      <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="••••••••" /></div>
+      <div class="rowbtn">
+        <button class="primary" id="loginSubmit">Login</button>
+        <button class="ghost" data-close="#loginModal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="signupModal">
+    <div class="sheet">
+      <h3>Create Account</h3>
+      <div class="field"><label>Name</label><input type="text" placeholder="Full name" /></div>
+      <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" /></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="Create a password" /></div>
+      <div class="rowbtn">
+        <button class="primary" id="signupSubmit">Sign up</button>
+        <button class="ghost" data-close="#signupModal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 </html>
