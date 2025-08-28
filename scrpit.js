@@ -133,7 +133,7 @@ function addToCart(id){
   CART.push({id:item.id, name:item.name, price:item.price, img:item.img});
   syncCart();
   renderCart();
-  openCart();
+ 
 }
 function removeFromCart(idx){
   CART.splice(idx,1);
