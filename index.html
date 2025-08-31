@@ -1,56 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Celebration Store</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-
-</head>
-<body class="default">
-  <div id="video-container">
-    <video id="birthday-video" autoplay loop>
-      <source src="119849-719283263.mp4" type="video/mp4">
-      
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celebration Flow</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body class="all">
+    <!-- Background Video -->
+    <video id="bg-video" loop muted autoplay>
+      <source src="119849-719283263.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
     </video>
-    <audio id="birthday-audio" autoplay loop>
-      <source src="happy_birthday.mp3" type="audio/mpeg">
-      
-    </audio>
-    <div id="overlay">
-      <div class="form-container">
-        <h2>Hey! Let's Celebrate!</h2>
-        <input type="text" id="name-input" placeholder="What's your name?" aria-label="Name">
-        <input type="date" id="birthday-input" aria-label="Birthday">
-        <button onclick="submitForm()">Submit</button>
-      </div>
-    </div>
-  </div>
-  <div id="content">
-    <div class="theme-selection">
-      <h2>Choose Your Birthday Theme!</h2>
-      <button class="theme-btn" onclick="setTheme('all')">All Themes</button>
-      <button class="theme-btn" onclick="setTheme('unicorn')">Unicorn</button>
-      <button class="theme-btn" onclick="setTheme('barbie')">Barbie</button>
-      <button class="theme-btn" onclick="setTheme('frozen')">Frozen</button>
-      <button class="theme-btn" onclick="setTheme('superhero')">Superhero</button>
-      <button class="theme-btn" onclick="setTheme('jungle')">Jungle</button>
-      <div>
-      <button id="next-btn" onclick="showProducts()">Next</button>
-      </div>
-    </div>
-    <div class="product-suggestion" style="display: none;">
-      <h2>Perfect Products for Your <span id="theme-name"></span> Party!</h2>
-      <div class="product-grid" id="product-grid"></div>
-      <button id="next-btn" onclick="showCart()">View Cart</button>
-    </div>
-    <div class="cart-preview" style="display: none;">
-      <h2>Your Party Selections</h2>
-      <ul id="cart-items"></ul>
-      <button id="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
-    </div>
-  </div>
 
-</body>
+    <!-- Music Controls -->
+    <div class="music-controls" id="musicToggle">
+      <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+      <source src="happy_birthday.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div id="flow">
+      <!-- Progress bar -->
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="step-counter">Step <span id="current-step">1</span> of 4</div>
+
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <h2>Let’s Celebrate Your Birthday Together ! </h2>
+        <div class="input-group">
+          <label class="input-label">Your Name</label>
+          <input id="nameInput" placeholder="Enter your name" />
+        </div>
+        <div class="input-group">
+          <label class="input-label">Your Birthday</label>
+          <div class="datepicker-container">
+            <input id="dobInput" type="date" />
+          </div>
+        </div>
+        <button class="btn" id="startBtn">Next</button>
+      </div>
+      
+
+      <div id="flow1 step"></div>
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <h2>We Have Many Themes to Celebrate Your Birthday</h2>
+        <div id="themeOptions" class="grid"></div>
+        <div class="btn-container">
+          <button class="btn back" id="backToStep1">Back</button>
+          <button class="btn" id="toStep3">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <h2>Choose Your Products</h2>
+        <div id="productGrid" class="grid"></div>
+        <div class="btn-container">
+          <button class="btn back" id="backToStep2">Back</button>
+          <button class="btn" id="toStep4">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step" id="step4">
+        <h2>Your Cart</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
+        <div class="btn-container">
+          <button class="btn back" id="backToStep3">Back</button>
+          <button class="btn" id="checkoutBtn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
